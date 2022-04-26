@@ -58,3 +58,9 @@ margin-bottom: 20px;
     padding: 10px;
     cursor: pointer;
 }
+
+.errors{
+    color: crimson;
+    margin-top: 10px;
+    
+}
