@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './sidebar.css'
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import UserContext from '../../../context/user/UserContext';
 
 function Sidebar() {
     const [cats, setCats] = useState([]);
     const host = "http://localhost:5000/api";
+    const PF = "http://localhost:5000/images/";
+
+    const context = useContext(UserContext);
+    const { user } = context;
 
 
     useEffect(() => {
@@ -20,7 +25,7 @@ function Sidebar() {
         <div className='sidebar'>
             <div className="sidebarItem">
                 <span className="sidebarTitle">ABOUT ME</span>
-                <img className='sidebarImg' src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
+                <img className='sidebarImg' src={user?.profilePic?(PF + user.profilePic):"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9pszu5sKKHLZGfxcN0fxd2nvTTEOkE_OJrA&usqp=CAU"} alt="avatar" />
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum omnis doloremque molestias consequuntur sequi ad reprehenderit porro iste, dolorum voluptate!</p>
             </div>
 

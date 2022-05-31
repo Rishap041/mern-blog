@@ -4,9 +4,10 @@ import p2 from '../../../assets/p2.jpg'
 import { Link } from 'react-router-dom'
 
 function Post({ post }) {
+  const PF = "http://localhost:5000/images/"
   return (
     <div className="post">
-      <img className='postImg' src={p2} alt="" />
+      <img className='postImg' src={PF + post.photo} alt="" />
       <div className="postInfo">
         <div className="postCats">
           {post.categories.map((c) => (

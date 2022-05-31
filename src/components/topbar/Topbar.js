@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import UserContext from '../../context/user/UserContext';
 import './topbar.css'
 function Topbar() {
-  const user = false;
+  const PF = "http://localhost:5000/images/";
+  const context = useContext(UserContext);
+    const {user,setUser} = context;
+  const handleLogout = ()=>{
+    localStorage.removeItem('user');
+    setUser(null)
+  }
   return (
     <div className='top'>
       <div className="topLeft">
@@ -19,14 +26,15 @@ function Topbar() {
           <li className="topListItem"><Link to={'/'}>ABOUT</Link></li>
           <li className="topListItem"><Link to={'/'}>CONTACT</Link></li>
           <li className="topListItem"><Link to={'/write'}>WRITE</Link></li>
-          <li className="topListItem">{user && "LOGOUT"}</li>
+          <li className="topListItem" onClick={handleLogout}>{user && "LOGOUT"}</li>
 
         </ul>
       </div>
       <div className="topRight">
         {
           user ? (
-            <img className='topImg' src="https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small/man-with-beard-avatar-character-isolated-icon-free-vector.jpg" alt="" />
+            <Link to={'/setting'}>
+            <img className='topImg' src={user.profilePic?(PF + user.profilePic):"https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg"} alt="" /></Link>
           ) :
             (
               <ul className='topList'>
